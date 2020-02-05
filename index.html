@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Missile Attack</title>
+        <!--Joey McLaughlin-->
+        <link href="style.css" rel="stylesheet">
+        <style>
+            body{
+                overflow: hidden;
+            }
+            #canvas{
+                background-image: url(city.jpg);
+                background-size: 100% 100%;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+            .button{
+                width: 200px;
+                height: 100px;
+                border-radius: 25px;
+                border: black solid 2px;
+                float: left;
+                text-align: center;
+                font-size: 1.5em;
+            }
+            .buttonBox{
+                width: 612px;
+            }
+            .imgButton{
+                width: 270px;
+                height: 150px;
+                border-radius: 25px;
+                border: black solid 2px;
+                float: left;
+                text-align: center;
+                font-size: 1.5em;
+                cursor: pointer;
+            }
+            .imgButton:hover{
+                opacity: 0.9;
+            }
+            .speed{
+                width: 200px;
+                height: 100px;
+                border-radius: 25px;
+                border: black solid 2px;
+                float: left;
+                text-align: center;
+                font-size: 1.5em;
+            }
+            .ImgButton1{
+                background-image: url(wolf.jpg);
+                background-size: 100% 100%;
+            }
+            .ImgButton2{
+                background-image: url(city.jpg);
+                background-size: 100% 100%;
+            }
+            .ImgButton3{
+                background-image: url(cartoon.png);
+                background-size: 100% 100%;
+            }
+            .ImgButton4{
+                background-image: url(space.jpg);
+                background-size: 100% 100%;
+            }
+            .ImgButton5{
+                background-image: url(water.jpg);
+                background-size: 100% 100%;
+            }
+            .ImgButton6{
+                background-image: url(white.png);
+                background-size: 100% 100%;
+            }
+            .button:hover{
+                cursor: pointer;
+                opacity: .8;
+            }
+            .button:active{
+                opacity: .6;
+            }
+            .easy{
+                background-color: green;
+            }
+            .medium{
+                background-color: blue;
+            }
+            .hard{
+                background-color: red;
+            }
+            #canvas2{
+                position: absolute;
+                border: black solid 1px;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+            #popup{
+                width: 600px;
+                height: 600px;
+                border: black solid 1px;
+                position: absolute;
+                top: 9px;
+                left: 9px;
+                text-align: center;
+                visibility: hidden;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+            #startPopup{
+                width: 600px;
+                height: 600px;
+                border: black solid 1px;
+                position: absolute;
+                top: 9px;
+                left: 9px;
+                text-align: center;
+                visibility: visible;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+            #newHighScore{
+                visibility: hidden;
+            }
+            .playAgain{
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+                top: 400px;
+                background-color: aquamarine;
+            }
+            .writing{
+                background-color: white;
+                opacity: .5;
+            }
+            #BackgroundPopUp{
+                visibility: hidden;
+                background-color: aqua;
+                z-index: 5;
+                width: 560px;
+                height: 560px;
+                padding: 20px;
+                position: absolute;
+                top: 10px;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+            .exitPopup{
+                background-color: red;
+                text-align: center;
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                left: 568px;
+                top: -2px;
+                border: black solid 2px;
+                font-size: 1.75em;
+                cursor: pointer;
+            }
+            .exitPopup:hover{
+                background-color: #af0000;
+            }
+            #changed{
+                color: green;
+            }
+            .container{
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+                top: 612px;
+            }
+            .backgroundButton{
+                background-color: aquamarine;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+                top: 250px;
+                cursor: pointer;
+            }
+            .score{
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-300px, 0);
+                font-size: 1em;
+            }
+        </style>
+    </head>
+    <body>
+<!--Code Here---------------------------------------------->
+        <canvas height="600px" width="600px" style="border: black solid 1px;" id="canvas"></canvas>
+        <canvas height="600px" width="600px" id="canvas2"></canvas>
+        <div id="popup">
+            <h1 class="writing">You lost</h1>
+            <h3 class="points writing">Score: <span id="points">0</span></h3>
+            <h3 class="high writing">HighScore: <span id="highScore">0</span></h3>
+            <h4 class="writing" id="newHighScore">New High Score!</h4>
+            <div class="button backgroundButton" onclick="showBackgrounds()"><br>View<br>
+            Backgrounds</div>
+            <div class="button playAgain" onclick="playAgain()"><br>Play Again!</div>
+        </div>
+        <div id="startPopup">
+            <h1 class="writing">Missile Attack!</h1>
+            <div class="button backgroundButton" onclick="showBackgrounds()"><br>View<br>
+            Backgrounds</div>
+            <div class="button playAgain" onclick="playAgain()"><br>Play!</div>
+        </div>
+        <div id="BackgroundPopUp">
+            <h2>Choose a Background!</h2>
+            <div class="imgButton ImgButton1" onclick="resetImg('wolf.jpg')"></div>
+            <div class="imgButton ImgButton2" onclick="resetImg('city.jpg')"></div>
+            <div class="imgButton ImgButton3" onclick="resetImg('cartoon.png')"></div>
+            <div class="imgButton ImgButton4" onclick="resetImg('space.jpg')"></div>
+            <div class="imgButton ImgButton5" onclick="resetImg('water.jpg')"></div>
+            <div class="imgButton ImgButton6" onclick="resetImg('white.png')"></div>
+            <div class="exitPopup" onclick="ExitPopup()">X</div>
+            <p id="changed"></p>
+        </div>
+        <h1 class="score writing">Score: <span id="coins">0</span></h1>
+        <div class="container">
+            <div class="buttonBox">
+                    <div class="button easy" onclick="easy()"><br>EASIER</div>
+                <div class="speed"><br>Speed of missiles:<br><span id="speed">2000</span></div>
+                    <div class="button hard" onclick="hard()"><br>HARDER</div>
+            </div>
+        </div>
+<!--Script------------------------------------------------>
+        <script src="script.js"></script>
+    </body>
+</html>
